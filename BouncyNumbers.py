@@ -96,7 +96,7 @@ if __name__ == "__main__":
     getMinNumber(0.50)
     
     #Brute Force Solution
-    #This solution find out a number that its bouncy numbers match with a target percentage 
+    #This solution find out the least number that its bouncy numbers match with a target percentage 
     #But it has poor performance
     n = 100
     percentage = 0.5
