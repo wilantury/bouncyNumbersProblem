@@ -14,3 +14,8 @@
 
 >### Find the least number for which the proportion of bouncy numbers is exactly 99%.
 
+## Tests
+
+>I got this number ```1587000``` which has the 99% of bouncy numbers, using the experimental algorithm.
+>The Brute force algorithm is too slow.
+

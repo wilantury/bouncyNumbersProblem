@@ -74,7 +74,7 @@ def getMinNumber(percentage):
             break
         elif per < percentage:
             lower_limit = min_number
-            min_number *= 2
+            #min_number *= 2
             #min_number += 100
             upper_limit = min_number
     
