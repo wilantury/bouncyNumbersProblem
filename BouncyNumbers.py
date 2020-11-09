@@ -1,5 +1,6 @@
 """Problem: Find the least number for which the proportion of bouncy numbers is exactly 99%.
 """
+old_value = {"old_val":0, "min_number":0}
 
 """Check if the number is an increasing number
     Argument: iterableNumber - List with digits
@@ -48,10 +49,11 @@ def isBouncynumber(number):
     Output: float - percentage
 """
 def getPercentageBouncyNumber(min_number):
-    count = 0
-    for i in range(100,min_number+1):
-        if isBouncynumber(i):
-            count += 1            
+    count = old_value["old_val"]
+    if isBouncynumber(min_number):
+        count += 1
+    old_value["old_val"] = count
+    print(count/min_number)          
     return count/min_number
 
 """Algorithm that find a number that its bouncy numbers match with a target percentage
@@ -96,10 +98,10 @@ def getMinNumber(percentage):
 
 """Main program"""
 if __name__ == "__main__":
-    percentage = 0.99
+    percentage = 0.96
     #This solution find out a number that match with the target percentage.
     #But Not te first number 
-    print(getMinNumber(percentage))
+    #print(getMinNumber(percentage))
     
     #Brute Force Solution
     #This solution find out the least number that its bouncy numbers match with a target percentage 
