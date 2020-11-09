@@ -16,7 +16,7 @@
 
 ## Tests
 
->I got this number ```1587000``` which has the 99% of bouncy numbers, using the experimental algorithm.
+>I got this number ```1587000``` which has the 99% of bouncy numbers, using the brute force algorithm.
 
->The Brute force algorithm is too slow.
+>The Brute force algorithm took around 6 Seconds to find the number in my machine.
 
