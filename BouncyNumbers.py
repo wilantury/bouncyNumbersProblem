@@ -53,59 +53,15 @@ def getPercentageBouncyNumber(min_number):
     if isBouncynumber(min_number):
         count += 1
     old_value["old_val"] = count
-    print(count/min_number)          
     return count/min_number
-
-"""Algorithm that find a number that its bouncy numbers match with a target percentage
-    Input: float - a percentage target
-    Output: integer - number that its bouncy numbers match with a target percentage
-
-    Notes: This algorithm doesn't work with all percentage values. It is just a experiment.
-        Although it works fine for some values, this algorithm is not a good approach to solve this problem.
-        :) 
-"""
-def getMinNumber(percentage):
-    min_number=200
-    lower_limit = 0
-    old_upper = 0
-    upper_limit = min_number
-
-    while(True):
-        per = getPercentageBouncyNumber(min_number)
-        if per > percentage:
-            break
-        elif per < percentage:
-            lower_limit = min_number
-            min_number *= 2
-            #min_number += 100
-            upper_limit = min_number
-    
-    while(True):
-        per = getPercentageBouncyNumber(min_number)
-        if per > percentage:
-            old_upper = upper_limit
-            min_number = upper_limit -lower_limit
-            min_number = lower_limit + min_number // 2
-            upper_limit = min_number
-        elif per < percentage:
-            lower_limit = min_number
-            min_number = old_upper - lower_limit
-            min_number = lower_limit + min_number // 2
-            upper_limit = min_number  
-        elif per == percentage:
-            return min_number      
            
 
 """Main program"""
 if __name__ == "__main__":
-    percentage = 0.96
-    #This solution find out a number that match with the target percentage.
-    #But Not te first number 
-    #print(getMinNumber(percentage))
-    
+    percentage = 0.99
+   
     #Brute Force Solution
     #This solution find out the least number that its bouncy numbers match with a target percentage 
-    #But it has poor performance
     n = 100
     while getPercentageBouncyNumber(n) != percentage:
         n += 1
