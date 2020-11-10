@@ -1,6 +1,9 @@
 """Problem: Find the least number for which the proportion of bouncy numbers is exactly 99%.
 """
-old_value = {"old_val":0, "min_number":0}
+"""imports"""
+import time
+
+old_value = {"old_val":0}
 
 """Check if the number is an increasing number
     Argument: iterableNumber - List with digits
@@ -8,14 +11,11 @@ old_value = {"old_val":0, "min_number":0}
 """
 def isIncreasing(iterableNumber):
     increasing = False
-    if len(iterableNumber) == 1:
-        return True
     for i in range(0 ,len(iterableNumber)-1):
-        if iterableNumber[i+1] > iterableNumber[i] or iterableNumber[i+1] == iterableNumber[i]:
+        if iterableNumber[i+1] >= iterableNumber[i]:
             increasing = True
         else:
-            increasing = False
-            break
+            return False
     return increasing
 
 """Check if the number is an decreasing number
@@ -24,14 +24,11 @@ def isIncreasing(iterableNumber):
 """
 def isDecreasing(iterableNumber):
     decreasing = False
-    if len(iterableNumber) == 1:
-        return True
     for i in range(0 ,len(iterableNumber)-1):
-        if iterableNumber[i] > iterableNumber[i+1] or iterableNumber[i] == iterableNumber[i+1]:
+        if iterableNumber[i] >= iterableNumber[i+1]:
             decreasing = True
         else:
-            decreasing = False
-            break
+            return False
     return decreasing
 
 """Check if a number is a bouncy number
@@ -39,10 +36,12 @@ def isDecreasing(iterableNumber):
     output: Boolean
 """
 def isBouncynumber(number):
-    iterableNumber = [int(i) for i in str(number)]
-    if isDecreasing(iterableNumber) == isIncreasing(iterableNumber) == False:
-        return True
-    return False
+    iterableNumber = str(number)
+    if isDecreasing(iterableNumber):
+        return False
+    if isIncreasing(iterableNumber):
+        return False
+    return True
 
 """Compute the percentage of bounce numbers in a range.
     arguments: min_number - integer that fix a range.
@@ -59,10 +58,12 @@ def getPercentageBouncyNumber(min_number):
 """Main program"""
 if __name__ == "__main__":
     percentage = 0.99
-   
+
     #Brute Force Solution
     #This solution find out the least number that its bouncy numbers match with a target percentage 
     n = 100
+    current = time.time()
     while getPercentageBouncyNumber(n) != percentage:
-        n += 1
+        n += 1    
     print(n)
+    print(time.time() - current)
