@@ -5,51 +5,34 @@ import time
 
 old_value = {"old_val":0}
 
-"""Check if the number is an increasing number
-    Argument: iterableNumber - List with digits
-    Output: Boolean
-"""
-def isIncreasing(iterableNumber):
-    increasing = False
-    for i in range(0 ,len(iterableNumber)-1):
-        if iterableNumber[i+1] >= iterableNumber[i]:
-            increasing = True
-        else:
-            return False
-    return increasing
-
-"""Check if the number is an decreasing number
-    Argument: iterableNumber - List with digits
-    Output: Boolean
-"""
-def isDecreasing(iterableNumber):
-    decreasing = False
-    for i in range(0 ,len(iterableNumber)-1):
-        if iterableNumber[i] >= iterableNumber[i+1]:
-            decreasing = True
-        else:
-            return False
-    return decreasing
-
 """Check if a number is a bouncy number
-    Argument: number - integer
-    output: Boolean
+   Output: Boolean
 """
-def isBouncynumber(number):
-    iterableNumber = str(number)
-    if isDecreasing(iterableNumber):
-        return False
-    if isIncreasing(iterableNumber):
-        return False
-    return True
+def is_bouncy_number(iterableNumber):
+    increasing = True
+    decreasing = True
+    for i in range(0 ,len(iterableNumber)-1):
+        num_1 = iterableNumber[i+1]
+        num_2 = iterableNumber[i]
+        if num_1 >= num_2:
+            increasing = increasing
+        else:
+            increasing = False
+        if num_2 >= num_1:
+            decreasing = decreasing
+        else:
+            decreasing = False
+        if increasing == decreasing == False:
+            return True
+    return False
 
 """Compute the percentage of bounce numbers in a range.
     arguments: min_number - integer that fix a range.
     Output: float - percentage
 """
-def getPercentageBouncyNumber(min_number):
+def get_percentage_bouncy_number(min_number):
     count = old_value["old_val"]
-    if isBouncynumber(min_number):
+    if is_bouncy_number(str(min_number)):
         count += 1
     old_value["old_val"] = count
     return count/min_number
@@ -63,7 +46,7 @@ if __name__ == "__main__":
     #This solution find out the least number that its bouncy numbers match with a target percentage 
     n = 100
     current = time.time()
-    while getPercentageBouncyNumber(n) != percentage:
+    while get_percentage_bouncy_number(n) != percentage:
         n += 1    
     print(n)
     print(time.time() - current)
