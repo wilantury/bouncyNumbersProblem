@@ -18,5 +18,5 @@
 
 >I got this number ```1587000``` which has the 99% of bouncy numbers, using the brute force algorithm.
 
->The Brute force algorithm took around 2.5 Seconds to find the number in my machine.
+>The Brute force algorithm took around 2 Seconds to find the number in my machine.
 

@@ -3,7 +3,7 @@
 """imports"""
 import time
 
-old_value = {"old_val":0}
+old_value = 0
 
 """Check if a number is a bouncy number
    Output: Boolean
@@ -31,10 +31,11 @@ def is_bouncy_number(iterableNumber):
     Output: float - percentage
 """
 def get_percentage_bouncy_number(min_number):
-    count = old_value["old_val"]
+    global old_value
+    count = old_value
     if is_bouncy_number(str(min_number)):
         count += 1
-    old_value["old_val"] = count
+    old_value = count
     return count/min_number
            
 
@@ -44,7 +45,7 @@ if __name__ == "__main__":
 
     #Brute Force Solution
     #This solution find out the least number that its bouncy numbers match with a target percentage 
-    n = 100
+    n = 101
     current = time.time()
     while get_percentage_bouncy_number(n) != percentage:
         n += 1    
