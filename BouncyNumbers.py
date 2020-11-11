@@ -3,14 +3,15 @@
 """imports"""
 import time
 
-old_value = 0
+count = 0
 
 """Check if a number is a bouncy number
-   Output: Boolean
+   Output: Boolean, integer - (isBouncy?, quantity of digits after bouncy digit)
 """
 def is_bouncy_number(iterableNumber):
     increasing = True
     decreasing = True
+
     for i in range(0 ,len(iterableNumber)-1):
         num_1 = iterableNumber[i+1]
         num_2 = iterableNumber[i]
@@ -23,31 +24,47 @@ def is_bouncy_number(iterableNumber):
         else:
             decreasing = False
         if increasing == decreasing == False:
-            return True
-    return False
+            return True, len(iterableNumber) -(i + 2)
+    return False, 0
 
-"""Compute the percentage of bounce numbers in a range.
-    arguments: min_number - integer that fix a range.
-    Output: float - percentage
+"""Compute the search of the least number that match with the percentage of 
+    bouncy numbers.
+    arguments: float percentage - target percentage.
+    Output: least number that has the quantity of bouncy numbers that match
+            with the percentage target. 
 """
-def get_percentage_bouncy_number(min_number):
-    global old_value
-    count = old_value
-    if is_bouncy_number(str(min_number)):
-        count += 1
-    old_value = count
-    return count/min_number
-           
+def get_least_bouncy_number(percentage):
+    global count
+    min_number = 101
+
+    while True:
+        min_number_iterable = str(min_number)
+        is_bouncy, rest = is_bouncy_number(min_number_iterable)
+        if is_bouncy:
+            if rest > 0:
+                power = 10**rest
+                bouncy = min_number // power
+                while bouncy == min_number // power: 
+                    count += 1
+                    if count/min_number == percentage:
+                        return count, min_number
+                    min_number += 1
+                min_number -= 1
+            else:
+                 count += 1
+                 if count/min_number == percentage:
+                    return count, min_number
+        else:
+            if count/min_number == percentage:
+                return count, min_number   
+        min_number += 1      
 
 """Main program"""
 if __name__ == "__main__":
     percentage = 0.99
 
-    #Brute Force Solution
+    #Brute Force Solution, but performance improved, just 360mS in my machine
     #This solution find out the least number that its bouncy numbers match with a target percentage 
-    n = 101
     current = time.time()
-    while get_percentage_bouncy_number(n) != percentage:
-        n += 1    
-    print(n)
+    print(get_least_bouncy_number(percentage))
     print(time.time() - current)
